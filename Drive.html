@@ -1,0 +1,138 @@
+ <html>
+   <head> 
+      <title></title>
+      <link rel="icon" id="favicon"/>
+      <style type="text/css">
+   * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  }
+      </style>
+     </head>
+   <body style="margin: 0; background-color: rgba(166,166,166,0.3);">
+  <div style="width: 320px; height: 150px; border: 2px solid; background-color: white;text-align: center;">
+  <button onclick="al()" style="margin-top: 65px">click to close</button>
+   </div>
+  <script type="text/javascript">
+
+    function al() {
+  //alert("It's working correctly!")
+  window.close()
+   }
+  window.onresize=function() {rown()}
+  function rown() { 
+ var d = document.body.children[0]
+ d.style.marginTop=(innerHeight-d.offsetHeight)/2 + 'px'
+ d.style.marginLeft=(innerWidth-d.offsetWidth)/2 + 'px'
+ }
+ 
+// Stroke, URL, Name, Command
+  function readLocale() {
+ rown()
+ var a = localStorage.getItem(':openChanel')
+ var Items=[]
+ var Some=""
+ for(var i = 0; i < a.length; i++) {
+if(a[i] == '*') { Items.push(Some); Some="" }
+else {Some=Some+a[i] }
+ }
+Items.push(Some)
+console.log(Items)
+return Items
+   }
+window.onload=function() {
+window.cons = readLocale()
+var t = cons.length-1
+if(cons[t] == 'save') { Save() }
+else if(cons[t] == 'move') { Move() }
+else if(cons[t] == 'reload') { updateData() }
+else { setTimeout(function() { window.close() },50) }
+  }
+
+function Save() {
+document.body.children[0].innerHTML=`<p style="margin-top: 25px;">Server Haven't Your Page.</p>
+<p>Upload to Server.txt?</p>
+<button onclick="experementalSave()">Yes!</button><button style="margin-left: 10px;" onclick="cansel()">No, Thanks.</buttton>`
+console.log('saving..')
+}
+function experementalSave() {
+var E=[cons[1],cons[2],]
+getStroke('const EndScrpt=0', localStorage.getItem(':openChanel.page'),'window.P1','window.P2')
+var d = 'Codes[' + cons[0] + ']'
+var Text = P1 + d + ` = new Array();
+` + d + '[0] = "' + E[0] + `";
+` + d + '[1] = "' + E[1] + `";
+` + P2
+download(Text,'helper','document/html')
+tryRestart()
+ }
+function Move() {
+document.body.children[0].innerHTML=`<p style="margin-top: 25px;">Name found, but URL not.</p>
+<p>Move File?</p>
+<button onclick="experementalMove()">Yes, move</button><button style="margin-left: 10px;" onclick="cansel()">Close</buttton>`
+console.log('moving..')
+ }
+function experementalMove() {
+getStroke('const EndScrpt=0', localStorage.getItem(':openChanel.page'),'window.P1','window.P2')
+var Text = P1 + '  Codes[' + cons[0] + '][0] = "' + cons[1] + `";
+`+ P2
+download(Text,'helper','document/html')
+tryRestart()
+ }
+function tryRestart() {
+document.body.children[0].innerHTML=`<p style="margin-top: 50px;">When file loaded, restart server.</p>
+<button onclick="send()">Restart</button>`
+ }
+function send() {
+localStorage.setItem(':openChanel','true')
+ }
+function cansel() {
+localStorage.setItem(':openChanel','false')
+ }
+
+function download(data, filename, type) {
+console.log(`Data to Download: 
+` + data)
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);  
+   }
+}
+function getStroke(code,sfear,p1,p2) {
+function whole(x) {
+var R = ""
+for(var i = 0; i < x.length-1; i++) {
+R=R+x[i]
+  }
+return R
+}
+var f=sfear
+var F=""
+for(var I = 0; I < f.length; I++) { F=F+f[I]; var X=""; for(var e=0; e<code.length;e++) { X=X+f[I+e] }
+if(X == code) {
+var Result = whole(F)
+eval(p1 + '=`' + Result + '`')
+console.group('Paths:')
+console.log(Result)
+var F2=""
+for(var i = I; i < f.length; i++) { F2=F2+f[i] }
+eval(p2 + '=`' + F2 + '`')
+console.log(F2)
+console.groupEnd('Paths:')
+return I; } }
+console.error('  .stroke not found.  >> ' + code)
+return false
+}
+     </script>
+   </body>
+ </html>

@@ -1,0 +1,371 @@
+<html>
+<head>
+<title>code edit pro</title>
+<link rel="icon" href="data:image/png;base64,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"/>
+<style type="text/css">
+textarea {
+padding: 10px;
+background-color: rgba(0,0,0,0);
+}
+</style>
+</head>
+ <body style="margin: 0;">
+    <textarea style="position: fixed; margin-left: -2px; margin-top: -2px; font-size: 110%;"></textarea>
+    <div id="Download_History" style="display: none"></div>
+  <script type="text/javascript">
+    var sizeAllow = 500000
+    const table = `
+<!DOCTYPE html>
+ <html>
+   <head> 
+      <title></title>
+      <link rel="icon" id="favicon"/>
+      <style type="text/css">
+      # My_CSS
+      </style>
+     </head>
+   <body>
+   # My_Html
+  <script type="text/javascript">
+    # My_JavaScript
+     </scrip` + `t>
+   </body>
+ </html>`
+   const saveCode = "newFile/code.html"
+   const topCode = "newFile/top.txt"
+   const input = document.getElementsByTagName('textarea')[0]
+      function newDoc(c) {
+         localStorage.removeItem(saveCode)
+         input.blur()
+          var room = document.createElement("div")
+          if(c) { writeHistory(input.value) }
+          input.value=table
+          localStorage.removeItem("newFile/name/")
+      }
+   input.oninput=function() {
+      localStorage.setItem(saveCode,input.value)
+    }
+  function testPage() {
+   console.clear()
+   var textpage = finder.back(input.value, DataTypes)
+   document.write(textpage)
+   setTimeout(function() {
+     if(window.onload) { window.onload.call() }
+    },50)
+ }
+  function savePage() {
+     var value = finder.back(input.value, DataTypes)
+      var Name =  writeHistory(input.value)
+     download(value, Name,"allfiles")
+   }
+  function viewDownloadHistory() {
+  input.style.display = "none"
+  //var history = document.getElementById("Download_History").children
+  document.getElementById("Download_History").style.display = "block"
+   }
+  function closeDownloadHistory() {
+   document.getElementById("Download_History").style.display = "none"
+   input.style.display = "block"
+   }
+   
+  function writeHistory(value) {
+    var Name = localStorage.getItem("newFile/name/")
+    if(!Name) { Name = "Page.html" 
+    var room = document.createElement("textarea")
+    room.className = Name
+    room.value = value
+    document.getElementById("Download_History").append(room)
+    document.getElementById("Download_History").append(document.createElement("br"))    
+     }; return Name
+   }
+ document.onkeydown=function(e) {
+    if(e.code == "Space" && e.altKey) { input.value = enCode(input.value) }
+    else if(e.code == 'KeyS' && e.ctrlKey == true) { e.preventDefault(); savePage() }
+    else if(e.code == 'KeyN' && e.altKey == true) { e.preventDefault(); newDoc(true) }
+    else if(e.code == 'KeyO' && (e.ctrlKey || e.altKey)) { e.preventDefault(); pustFile() }
+    else if(e.key == 'Enter' && e.ctrlKey == true) { e.preventDefault(); testPage() }
+    else if(e.code == "KeyC" && e.altKey) { e.preventDefault(); copyData() }
+    else if(e.code == "KeyI" && (e.ctrlKey || e.altKey)) { e.preventDefault(); uploadText() }
+    else if(e.key == 'Tab') { e.preventDefault(); pustText(input,'    ',0) }
+    else if(e.key == 'Enter') { e.preventDefault(); pustText(input,`
+  `,0)  }
+ }
+  input.onscroll = function() {
+    localStorage.setItem(topCode, input.scrollTop)
+   }
+window.onload = function() {
+ var c = localStorage.getItem(saveCode)
+  if(c) { input.value = c }
+   else { newDoc() }
+    finder.SavedDataURLs = saver.get()
+    input.value = finder.back(input.value, DataTypes)
+    input.value = finder.hide(input.value, DataTypes)
+    input.oninput()
+    var d = localStorage.getItem(topCode)
+    console.log("Top/ " + d)
+    input.scrollTop = eval(d)
+    window.onresize()
+  }
+window.onresize=function() {
+  input.style.width=innerWidth+4+'px'
+  input.style.height=innerHeight+8+'px'
+ }
+function pustText(el, text, offset) {
+    var val = el.value, endIndex, range, doc = el.ownerDocument;
+    if (typeof el.selectionStart == "number"
+            && typeof el.selectionEnd == "number") {
+        endIndex = el.selectionEnd;
+        el.value = val.slice(0, endIndex) + text + val.slice(endIndex);
+        el.selectionStart = el.selectionEnd = endIndex + text.length+(offset?offset:0);
+    } else if (doc.selection != "undefined" && doc.selection.createRange) {
+        el.focus();
+        range = doc.selection.createRange();
+        range.collapse(false);
+        range.text = text;
+        range.select();
+    }
+}
+  function pustFile() {
+    var b = document.createElement('input')
+    b.type="file"
+    b.click()
+    b.oninput = function() {
+      var file = b.files[0]
+       localStorage.setItem("newFile/name/", file.name)
+       if(file) { convert(file) }
+      }
+    }
+  function convert(file) {
+    if(file.size < sizeAllow) {
+    var reader = new FileReader()
+    reader.readAsText(file)
+    reader.onloadend = function() {
+    localStorage.setItem(topCode, 0)
+    input.scrollTop = 0
+    input.value = reader.result
+    input.value = finder.hide(input.value, DataTypes)
+    saver.save(finder.SavedDataURLs)
+    input.oninput()
+     }
+    } else { console.warn(" Needs allow to read big files. Now, allowed (" + sizeAllow + ")") }
+  }
+  class CloudSaver {
+  constructor(id) {
+  this.key = id + ""
+  this.save = function(items) {
+   this.overview(true)
+   for(var i = 0; i < items.length; i++) {
+   localStorage.setItem(this.key + i, items[i])
+     }
+   }
+  this.get = function() { 
+  var result = []
+  var length = this.overview()
+  for(var i = 0; i < this.overview(); i++) {
+   result.push( localStorage.getItem(this.key+i) )
+     }
+  return result
+   }
+  this.overview = function(del) {
+   var length = 0
+   for(var i = 0; localStorage.getItem(this.key+i) != null; i++) {
+    length++
+    if(del) { localStorage.setItem(this.key+i, "") }
+           }
+     return length
+        }
+     }
+   }
+  var saver = new CloudSaver("newFile_images.txt")
+  const DataTypes = ["image/png","image/jpeg"]
+class DataFinder { 
+constructor() {
+this.SavedDataURLs = []
+this.take = function( text, types, sendErrors ) {
+const containers = ["'"," ",`"`,"`"]
+const cons = this
+var position = 0
+ var Result = []
+ var Errors = []
+  for(var i = 0; i < text.length; i++) {
+    var pie = ""
+    var code = "data:"
+    for(var e = 0; e < code.length; e++) { pie += text[i+e] }
+    if(pie == code) {   position = i; define(i + code.length) }
+      }
+   function define(e) {
+    var type = ""
+    var i = e
+    for(i = e; i < text.length; i++) {
+      if(text[i] == ";") { break }
+      else { type += text[i] }
+          }
+        take(type, i) 
+      }
+  function take(t, e) {
+   var lock = { type: false, key: false }
+   for(var i = 0; i < types.length; i++) {
+     if(t == types[i]) { lock.type = true; break }
+          }
+    var code = ";base64,"
+    var res = ""
+    for(var i = 0; i < code.length; i++) {
+      res += text[e+i]
+          }
+     if(res == code) { lock.key = true }
+   if(lock.key && lock.type) { 
+  Result.push({ type: t, pos: position, data: copy() }) 
+    }
+   else {  /* check failed */
+     Errors.push({ pos: position, data: copy() })
+          }
+      }
+   function copy() {
+    var res = ""
+    for(var i = position; i < text.length; i++) {
+      for(var e = 0; e < containers.length; e++) {
+         if(text[i] == containers[e]) { return res }
+             }
+      res += text[i]
+         }
+     return res
+     }
+  if(sendErrors) { return Errors }
+  else { return Result }
+ }
+this.hide = function(from, types)  {
+const cons = this
+cons.SavedDataURLs = []
+var urls = this.take(from, types)
+var result =  ""
+var pos = 0
+var i = 0; for(i = 0; i < from.length; i++) {
+ if(urls.length && i == urls[pos].pos) { hide(urls[pos]); 
+   if(pos < urls.length-1) { pos++ } 
+  }
+ else { result += from[i] }
+     }
+ function hide(data) {
+   result += ("data:" + data.type + "_#" + pos + ":")
+   cons.SavedDataURLs.push(data.data)
+   i += (data.data.length-1)
+      }
+  saver.save(this.SavedDataURLs)
+  return result
+         }
+this.back = function(text, types) {
+ const cons = this
+ var datas = []
+ var places = cons.take(text, types, true)
+ for(var i = 0; i < places.length; i++) {
+   var ans = define(places[i].pos)
+   if(ans) { datas.push(ans) }
+   }
+  function define(e) {
+  var type = ""
+  var id = ""
+  var code = false
+  var i = e; for(i = i + "data:".length; i < text.length; i++) {
+   if(text[i] == "_") { break }
+   else { type += text[i] }
+       }
+  for(var a = 0; a < types.length; a++) {
+  if(types[a] == type) { type = true }
+     }
+  if(type != true) { type = false }
+  if(text[i+1] == "#") { code = true } // Code
+  for(i = i +2; i < text.length; i++) {
+   if(text[i] == ":") { break }
+   else { id += text[i] }
+       }
+  var ans = cons.SavedDataURLs[id]
+  if(!ans) {
+  ans = "failed to load item #" + id 
+    }
+  if(type && id && code) {
+  return { content: ans, len: i - e, pos: e }
+   }
+   else { return false }
+     } 
+  var pos = 0
+  var Result = ""
+  for(var i = 0; i < text.length; i++) {
+   if(datas.length && i == datas[pos].pos) { 
+    Result += datas[pos].content
+    i += datas[pos].len
+    if(pos < datas.length-1) { pos++ }
+      }
+   else { Result += text[i] }
+   }
+   return Result
+          }
+      }
+  }
+  var finder = new DataFinder()
+  console.log(finder)
+  
+function download(data, filename, type) {
+console.log(`Data to Download: 
+` + data)
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);  
+   }
+}
+Array.prototype.toText = function() {
+var Result = "["
+for(var i = 0; i < this.length; i++) {
+Result += ("`"+this[i] + "`")
+if(i != this.length-1) { Result += ',' }
+   }
+return Result + "]"
+ }
+function copyData() {
+  var cop = window.getSelection().toString()
+  var res = finder.back(cop, DataTypes)
+   navigator.clipboard.writeText(res)
+  .then(() => {
+  console.log("text was coppied.")
+   })
+  .catch(err => {
+  console.log("failed to copy :(")
+      })
+   }
+  function uploadText() {
+  var inp = document.createElement("input")
+  inp.type = "file"
+   inp.oninput = function() {
+    if(this.files.length) {
+     var reader = new FileReader()
+     reader.readAsDataURL(this.files[0])
+      reader.onloadend = function() {
+       var result = hideData(reader.result, DataTypes)
+       pustText(input, result, 0) 
+           }
+         }
+       }
+    inp.click()
+    }
+  function hideData(text) {
+  var l = input.value.length
+  var t = finder.back(input.value + text, DataTypes)
+  var res = finder.hide(t, DataTypes)
+  var result = ""
+  for(var i = l; i < res.length; i++) {
+   result += res[i]
+      }
+   return result
+    }
+</script>
+<script id="background" color="rgba(255,255,255,0.95)" src="ImageScript.txt" type="text/javascript"></script>
+</body>
+</html>

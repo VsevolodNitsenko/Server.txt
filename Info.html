@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+ <html>
+   <head> 
+      <title></title>
+      <style type="text/css">
+      p {
+      font-size: 135%;
+      margin-top: 20px;
+      color: sienna;
+      text-align: center;
+       }
+      </style>
+     </head>
+  <body style="background-color: rgba(255,255,255,0.5); margin: 0">
+  <div id="hand" style="background-color: rgba(255,255,255,0.95);
+  position: fixed;
+  border: 1px dotted gray;
+  border-bottom: none; border-top: none">
+  <p style="margin-top: 30px;">Manifest<p>
+   </div>
+  <script type="text/javascript">
+  var Hand = document.getElementById("hand")
+  document.body.style.width = innerWidth + "px"
+  document.body.style.height = innerHeight + "px"
+  document.body.onclick = function() { localStorage.setItem(":openChanel", "true") }
+  window.onload = function() {m(0); window.onresize(); }
+   function m(i) {
+    var t = localStorage.getItem("Info/strings/" + i)
+    if(t) { 
+     var p = document.createElement("p")
+     p.innerHTML = t
+     Hand.append(p); m(i+1)
+         }
+      };
+     window.onresize = function() {
+     Hand.style.height = innerHeight + "px"
+     Hand.style.width = innerWidth*0.6 + "px"
+     Hand.style.marginLeft = (innerWidth*0.2)+"px"
+      }
+     </script>
+   </body>
+ </html>
