@@ -1,0 +1,286 @@
+var due = { base: false, menu: false, script: null, href: document.URL }
+for(var i = 0; i < document.getElementsByTagName('script').length; i++) { 
+var s = document.getElementsByTagName('script')[i]
+var a = s.attributes
+for(var e = 0; e < a.length; e++) {
+var t = a[e]
+if(t.name == 'database' && t.value == 'menu-only') { due.script=s; due.menu=true }
+else if(t.name == 'database' && t.value == 'base-only') { due.script=s; due.base=true; }
+else if(t.name == 'database' && t.value == 'use') { due.script=s; due.base=true; due.menu=true  }
+   }
+ if(due.script) {
+var u = due.script.src;
+var F=""
+var f=""
+for(var i = 0; i < u.length; i++) {
+if(u[i] == '/') { F=F+f+'/'; f="" }
+else { f=f+u[i] }
+     }
+due.href = F
+    }
+ }
+
+if(document.body) {
+//console.log("here is slow loading")
+ if( preventLoad() ) {
+Onload(due.menu,due.base)
+  }
+}
+else if( preventLoad() ) {
+window.addEventListener("DOMContentLoaded",(event) => {
+console.log("preloading..")
+Onload(due.menu,due.base)
+  })
+ }
+function preventLoad() {
+if(due.base && localStorage.getItem(":openChanel") == "a") {
+localStorage.setItem(":openChanel",document.URL)
+var a = document.createElement("a")
+a.href=due.href + "Form.html"
+a.click()
+return false
+}
+else { return true }
+ }
+function Load___(src,callback,took) {
+  /* took > 50 */
+  var f = document.createElement('iframe')
+  f.style.display="none"
+  f.onload=function() { 
+  console.log('loading sourse: ' + f.src)
+  setTimeout(function() {
+  document.body.removeChild(f)
+  callback.call()
+          },took)
+       }
+  f.src = src
+  document.body.append(f)
+ }
+
+function Onload(menu,base) {
+  if(menu) { getKeyCodes() }
+  if(base) { sendSignal() }
+}
+function getParametres(caller) {
+  var v = caller.toString()
+  var I=0
+   for(var f = 0; v[I] != '('; I++) {  }
+  I++
+  var S = [""]
+   for(var f = 0; v[I] != ')'; I++) { 
+     if(v[I] != ',') { S[S.length-1]=S[S.length-1]+v[I] } 
+     else { S.push("") }
+   }
+return S
+}
+function getKeyCodes() {
+document.addEventListener('keydown',function(e) { 
+if(e.code == "Period" && e.ctrlKey) { strokeMenu() } 
+},true)
+console.warn('  ctrl + "." to use menu')
+}
+
+ var __openedMenu__ = false
+  function strokeMenu() {
+  if(!__openedMenu__) {
+  try {
+   var i = 0
+   for(i = i; i < __about__.length; i++)  {
+     localStorage.setItem("Info/strings/" + i, __about__[i])
+    }; localStorage.removeItem("Info/strings/" + (i))
+   var f = document.createElement("iframe")
+   window.infoFrame = f
+   f.src = due.href + "Info.html"
+   f.style="border: none; position: fixed; top: 0; left: 0; z-index: 100000"
+   f.style.width = innerWidth + "px"
+   f.style.height = innerHeight + "px"
+   document.body.append(f)
+   wait_Answer(function() { 
+     document.body.removeChild(f); __openedMenu__=false 
+     window.infoFrame = null
+     localStorage.setItem(":openChanel", "")
+     }, true)
+   __openedMenu__ = true
+       } catch { console.log("add __about__ array to open Menu.") }
+     }
+   }; 
+   window.addEventListener("resize", function() {
+      if(window.infoFrame) { 
+       window.infoFrame.style.width = innerWidth + "px"
+       window.infoFrame.style.height = innerHeight + "px"
+       }
+    })
+
+function sendSignal() {
+window.__LastValue__= localStorage.getItem(":openChanel.codes")
+localStorage.setItem(`:openChanel.codes`,"")
+Load___(due.href + "helper.html",function() {
+var script = document.createElement('script')
+script.innerHTML = localStorage.getItem(":openChanel.codes")
+ document.body.append(script) 
+if(window.__Domain__Link == undefined && window.__BasePage__) {
+RunInstall()
+  }
+else if(!window.__BasePage__ && window.__Domain__Link != undefined) {
+if(get_URLs() == 'have not' && get_Names() == 'have') { tryMove() }
+else if(get_URLs() == 'have not') { trySave() }
+else { console.warn('.server connection turned on.') }
+  }
+else if(window.__BasePage__) {
+GoLoadTheme()
+   }
+else { setTimeout(function() { 
+/*alert('You must run Base Page')*/ console.error(" >> Server Isn't Connected ") },500) }
+   },150)
+}
+
+function getStroke(code,sfear,p1,p2) {
+function whole(x) {
+var R = ""
+for(var i = 0; i < x.length-1; i++) {
+R=R+x[i]
+  }
+return R
+}
+var f=sfear
+var F=""
+for(var I = 0; I < f.length; I++) { F=F+f[I]; var X=""; for(var e=0; e<code.length;e++) { X=X+f[I+e] }
+if(X == code) {
+var Result = whole(F)
+eval(p1 + '=`' + Result + '`')
+console.group('Paths:')
+console.log(Result)
+var F2=""
+for(var i = I; i < f.length; i++) { F2=F2+f[i] }
+eval(p2 + '=`' + F2 + '`')
+console.log(F2)
+console.groupEnd('Paths:')
+return I; } }
+console.error('   .stroke not found. >> ' + code)
+return false
+}
+
+function download(data, filename, type) {
+console.log(`Data to Download: 
+` + data)
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);  
+   }
+}
+
+function get_URLs() {
+var u = document.URL
+for(var i = 0; i < Codes.length; i++) { 
+if(Codes[i][0] == u) { return 'have' }
+ }
+return 'have not'
+}
+function get_Names(s) {
+var n = getFileName()
+for(var i = 0; i < Codes.length; i++) { 
+if(Codes[i][1] == n) { if(!s) { return 'have' } else { return i } }
+ }
+return 'have not'
+}
+
+
+function updateData() {
+localStorage.setItem(':' + __Domain__Link,"s")
+setTimeout(function() {
+var a = document.createElement('a')
+a.href = document.URL
+a.click()
+},100)
+window.open(due.href + 'helper.html')
+}
+function getFileName() {
+var f = document.URL
+var p = 0;
+for(var i = 0; i < f.length; i++) { if(f[i] == '/') { p = i } }
+var name=""
+for(var e = p+1; e < f.length; e++) { name=name+f[e] }
+return name
+}
+
+function generateRandomNumber() {
+var F = ""
+for(var i = 0; i < 9; i++) { F=F+Math.round(Math.random()*9) }
+console.log("Your Server's link: " + F)
+return F
+}
+
+var keydowns=null
+function stopAll() {
+/* clear setTimeouts
+clearAll() */
+keydowns = document.onkeydown
+document.onkeydown=function(e) {
+console.log(e.key)
+if(e.key == 'Escape') { document.body.removeChild(window.f) }
+  }
+}
+function clearAll() {
+  for (var i = setTimeout(function() {}, 0); i > 0; i--) {
+    window.clearInterval(i);
+    window.clearTimeout(i);
+    if (window.cancelAnimationFrame) window.cancelAnimationFrame(i);
+    }
+ }
+
+// Stroke, URL, Name, Command
+function trySave() {
+ if( createSave() ) {
+stopAll()
+var Result= Codes.length + '*' + document.URL + '*' + getFileName() + '*' + 'save'
+localStorage.setItem(':openChanel',Result)
+window.f = document.createElement('iframe')
+f.src = due.href + 'Drive.html'
+f.style=`position: fixed; z-index: 100002; top: 0; left: 0; border: 0px solid; width: 100%; height: 100%; padding: 0;`
+document.body.append(f)
+wait_Answer(updateData)
+   }
+ }
+function tryMove() {
+if( createSave() ) {
+stopAll()
+var Result= get_Names(true) + '*' + document.URL + '*' + getFileName() + '*' + 'move'
+localStorage.setItem(':openChanel',Result)
+window.f = document.createElement('iframe')
+f.src = due.href + 'Drive.html'
+f.style=`position: fixed; z-index: 100002; top: 0; left: 0; width: 100%; height: 100%; padding: 0;`
+document.body.append(f)
+wait_Answer(updateData)
+    }
+ }
+function wait_Answer(res, p) {
+var a = localStorage.getItem(':openChanel')
+if(a == 'true') { res() }
+else if(a == 'false' && !p) {
+document.onkeydown=keydowns
+document.body.removeChild(window.f);
+   }
+else { setTimeout(function() { wait_Answer(res, p) },100) }
+ }
+function createSave() {
+var root = ""
+var f = ""
+for(var i = 0; i < document.URL.length; i++) {
+if(document.URL[i] == "/") { root+=(f+"/"); f="" }
+else { f += document.URL[i] }
+ }
+console.log(root)
+if(root != due.href) {
+return true
+}
+else { return false }
+  }
