@@ -1,0 +1,84 @@
+ <html>
+   <head> 
+      <title></title>
+      <link rel="icon" id="favicon"/>
+      <style type="text/css">
+   * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  }
+      </style>
+     </head>
+   <body style="margin: 0; background-color: rgba(166,166,166,0.3);">
+  <div style="width: 320px; height: 150px; border: 2px solid; background-color: white;text-align: center;">
+  <button onclick="al()" style="margin-top: 65px">click to close</button>
+   </div>
+  <script type="text/javascript">const __BasePage__ = true</script>
+  <script type="text/javascript">
+ function al() {
+    window.close()
+    localStorage.setItem(":openChanel", "close")
+ };
+  window.onresize=function() {rown()}
+   function rown() { 
+   var d = document.body.children[0]
+   d.style.marginTop=(innerHeight-d.offsetHeight)/2 + 'px'
+   d.style.marginLeft=(innerWidth-d.offsetWidth)/2 + 'px'
+ };
+  function InitializeLoad() {
+    window.onresize()
+    var comand = localStorage.getItem(":openChanel.comand")
+    if(comand == 'save') { Save() }
+    else if(comand == 'move') { Move() }
+    else if(comand == 'reload') { updateContent() }
+    else { /*setTimeout(function() { window.close() },200)*/ }
+ };
+ function Save() {
+      document.body.children[0].innerHTML=`<p style="margin-top: 25px;">Server Haven't Your Page.</p>
+     <p>Upload to Server.txt?</p>
+     <button onclick="experementalSave()">Yes!</button><button style="margin-left: 10px;" onclick="al()">Not now.</buttton>`
+ };
+ function Move() {
+   document.body.children[0].innerHTML=`<p style="margin-top: 25px;">Name found, but URL not.</p>`+
+   `<p>Move File?</p><button onclick="experementalMove()">` + 
+   `Yes, move</button><button style="margin-left: 10px;" onclick="cansel()">Close</buttton>`
+ };
+ function updateContent() {
+  document.body.children[0].innerHTML=`<p style="margin-top: 50px;">When file loaded, restart server.</p>
+  <button onclick="complete()">Restart</button>`
+ };
+var name, link
+function experementalSave() {
+  name = localStorage.getItem(':openChanel.name')
+  link = localStorage.getItem(':openChanel.link')
+  var item = { name: name, src: link }
+  __Domain__.links.push(  item )
+  var data = __Domain__.RewriteData(__Domain__.code, __Domain__.links)
+  __Domain__.Download(data,"Drive.js",'allfiles'); Enter()
+ };
+  
+function experementalMove() {
+  name = localStorage.getItem(':openChanel.name')
+  link = localStorage.getItem(':openChanel.link')
+  var result = new Array()
+  for(var i = 0; i < __Domain__.links.length; i++) {
+   if(__Domain__.links[i].name == name) {
+    __Domain__.links[i].src = link
+     }; result.push(__Domain__.links[i])
+    }
+  var data = __Domain__.RewriteData(__Domain__.code, result)
+  __Domain__.Download(data,"Drive.js",'allfiles'); Enter()
+ };
+  
+ function Enter() {
+   document.body.children[0].innerHTML=`<p style="margin-top: 50px;">When file loaded, restart server.</p>
+   <button onclick="complete()">Restart</button>`
+ };
+ function complete() {
+   __Domain__.VisitURL(link)
+  }
+     </script>
+    <script type="text/javascript" src="Script.js" database="use"></script>
+   </body>
+ </html>

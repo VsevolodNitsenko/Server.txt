@@ -1,0 +1,266 @@
+<html>
+ <head>
+  <title>Server.txt</title>
+  <link rel="icon" href="Logo.png" type="image/png" />
+  <link rel="stylesheet" href="StyleShield.css"/>
+ </head>
+<body style="margin: 0;">
+  <div id="all" style="display: none">
+   <div id="stats">
+    <canvas></canvas>
+    <p class="stats"></p>
+    <p class="stats">Loading..</p>
+    <button class="ctrl" onclick="clearRubbish()">Take the Rubbish</button><br/>
+    <button class="ctrl" onclick="openText()" style="margin-top: 10px;">Create Document</button><br/>
+   </div>
+   <div id="loads">
+    <input class="cnts" style="width: 300px;" oninput="find()" placeholder=" Search.."/>
+    <button class="cnts" onclick="sett()">[ :active ]</button>
+    <div id="activePs" style="overflow-y: scroll; margin-top: 20px;"></div>
+    </div>
+  </div>
+  <script type="text/javascript"> const __BasePage__= true </script>
+  <script type="text/javascript">
+   function RunInstall() {
+      Install()
+      Enter()
+    };
+   function Install() {
+      window.ins = document.createElement('div')
+      ins.innerHTML=`<p class="prevent" style="margin-bottom: 0px; ">` + 
+       `Save File as "Drive.js" and move to the main folder.</p>` + 
+       `<p class="prevent" style="border-bottom: 1px dotted; margin-top: 0px;">` + 
+       ` When file is loaded, move it to the main folder and click " Install "</p>` + 
+       `<p style="text-align: center;">` + 
+       `<button onclick="endInstall()" class="install_butts">Install </button></p>`
+      document.body.append(ins)
+      ins.style.marginTop=(innerHeight-ins.offsetHeight)/2 - 50 + 'px'
+  };
+  function restore() {
+      window.ins = document.createElement('div')
+      ins.innerHTML=`<p class="prevent" style="margin-bottom: 0px; ">` + 
+      `Something Goes Wrong :(</p><p class="prevent" style="border-bottom: 1px dotted; margin-top: 0px;">` + 
+      `Don't worry, we will try to recover your data.</p>` + 
+      `<p style="text-align: center;"><button onclick="endInstall()" class="install_butts">` +
+      `Reinstall </button>`
+     document.body.append(ins)
+     ins.style.marginTop=(innerHeight-ins.offsetHeight)/2 - 50 + 'px'
+     Enter()
+ };
+  function Enter(code, array) {
+     var Code, Data, Result
+     if(code) { Code = code } else { Code = __Domain__.GetRandomNumber(8) }
+     if(array) { Data = array } else { Data = [] }
+      Result = __Domain__.RewriteData(Code, Data)
+      __Domain__.Download(Result,"Drive.js","allfiles")
+   };
+  function endInstall() {
+    var a = document.createElement('a')
+    a.href = document.URL; a.click()
+ };
+    </script>
+  <script type="text/javascript">
+    function clearRubbish() {
+      var Drive = __Domain__.RewriteData(__Domain__.code, workingLinks)
+      __Domain__.Download(Drive,"Drive.js","allfiles")
+    };
+    function clearCookies() {
+     localStorage.clear()
+     setTimeout(function() { console.warn("all cookies deleted.") } ,100)
+   };
+  </script>
+  <script type="text/javascript">
+  window.onresize=function() {
+    rown(true)
+   }
+  function rown(resize) {
+    var top = 184
+    if(innerHeight < 600 && !resize) { canv.width=300; canv.height=300 }
+    else if(innerHeight > 800) { document.getElementById('loads').style.marginTop="140px"; top+=50 }
+    document.getElementById('activePs').style.height=innerHeight-top+'px'
+  }
+  function openText() {
+  window.open("Main-Editor.html")
+   }
+   </script>
+ <script type="text/javascript">
+   function InitializeLoad() {
+     if(localStorage.getItem(':openChanel') == "a") { localStorage.setItem(':openChanel',"") }
+      window.text = localStorage.getItem(':openChanel.page')
+      var p = localStorage.getItem(':' + __Domain__.code) 
+      if(p == null || p == "s") { 
+       localStorage.setItem(':' + __Domain__.code,"");
+       write('Hello World')
+      } else {
+        document.getElementById('all').style.display="block"; rown(); EnterLoad(0); console.group("Links:")                         
+     }
+   };
+  function write(text) {
+     var p = document.createElement('p')
+     p.style = `font-size: 300%; position: fixed; width: auto; font-family: CrackMan`
+     document.body.append(p)
+     var i = 0; R()
+     function R() { 
+      if(i < text.length) { i++; p.innerHTML = p.innerHTML+text[i-1]; 
+      p.style.marginLeft = (innerWidth - p.offsetWidth)/2 + 'px';
+      p.style.marginTop = (innerHeight - p.offsetHeight)/2 + 'px' 
+      setTimeout(R,150) 
+      } else { 
+      setTimeout(function() {
+          document.body.removeChild(p); document.getElementById('all').style.display = 'block'; rown(); EnterLoad(0)
+           },600)   }
+       }
+  };  
+  function Load___(src,callback,took) {
+    /* took > 50ms */
+      var f = document.createElement('iframe')
+      f.style.display="none"
+      f.onload=function() { 
+      console.log("loading sourse: " + f.src)
+      setTimeout(function() {
+       document.body.removeChild(f)
+       callback.call()
+          },took)
+       }
+      f.src = src
+      document.body.append(f)
+  };
+   </script>
+ <script type="text/javascript">
+    var workingLinks=new Array()
+    var failedLinks=new Array()
+      function EnterLoad(x) {
+        if(__Domain__.links[x] != undefined) {
+         connectPage(__Domain__.links[x],x)
+        } else { strokeAppanded(); localStorage.setItem(":openChanel","") }
+      }; 
+   function connectPage(element,x) {
+     localStorage.setItem(':openChanel',"a")
+      Load___(element.src,function() {
+       var D = localStorage.getItem(":openChanel")
+       if(D == "a") { Bpand(element) }
+       else if(D != "a") { Append(element); element.existing = true }
+       setTimeout(function() { EnterLoad(x+1) },0)
+        progress(x)
+       },0)
+   };
+  function Append(e) {
+    var p = document.createElement('p')
+    p.innerHTML = e.name
+    p.className="Codes"
+    p.onclick=function() { window.open(e.src) }
+    workingLinks.push(p)
+  }; 
+  function Bpand(e) {
+    var p = document.createElement('p')
+    p.innerHTML = e.name
+    p.className="Codes"
+    p.onclick=function() { console.warn(e.src) }
+    failedLinks.push(p)
+  };
+  function strokeAppanded(m) {
+    console.groupEnd('Links:')
+    document.getElementById('loads').style.display="block"
+    document.getElementById('activePs').innerHTML=""
+    if(!m) {  setTimeout(function() { viewMemory() },200)
+    for(var i = 0; i < workingLinks.length; i++) { 
+     document.getElementById('activePs').append(workingLinks[i])
+     } 
+   } else {  
+      for(var i = 0; i < failedLinks.length; i++) {
+       document.getElementById('activePs').append(failedLinks[i])
+      }
+   }; if( document.getElementById('activePs').innerHTML == "") {
+       document.getElementById('activePs').innerHTML=`<p class="alrt">It's empty here</p>`
+      }
+  };
+    </script>
+ <script type="text/javascript"> 
+  var emps=0
+   function progress(i) {
+    if(!__Domain__.links[i].existing) { emps++ }
+    var p = ( ( (i+1)/__Domain__.links.length) * 100).toFixed(0)
+    drawStatus(p)
+  };
+ function viewMemory() {
+    var p = (emps/__Domain__.links.length * 100).toFixed(0)
+    if(p.toString() == 'NaN') { p = "0"; strokeDiagramm() }
+    var stats = document.getElementsByClassName('stats')
+    stats[1].innerHTML = 'Rubbish: ' + p + ' %'
+    stats[0].innerHTML = 'Pages: ' + __Domain__.links.length
+    ctx.strokeStyle="#4c0d0d"
+    ctx.beginPath()
+    ctx.arc(canv.width/2,canv.height/2,80, 0 - Math.PI/2, 2 * Math.PI *p/100 - Math.PI/2,false)
+    ctx.stroke()
+    console.log('Rubbish: ' + p + ' %')
+  };
+    var canv = document.getElementsByTagName('canvas')[0]
+    var ctx = canv.getContext('2d')
+    canv.width=400
+    canv.height=400
+    function drawStatus(p) {
+      ctx.lineWidth=20
+      ctx.clearRect(0,0,canv.width,canv.height)
+      ctx.beginPath()
+      ctx.strokeStyle="brown"
+      ctx.arc(canv.width/2,canv.height/2,80, 0 - Math.PI/2, 2 * Math.PI *(2-p/100) - Math.PI/2,true)
+      ctx.stroke()
+  };
+  function strokeDiagramm() {
+    ctx.lineWidth=1
+    ctx.strokeStyle="black"
+    ctx.beginPath()
+    ctx.arc(canv.width/2,canv.height/2,80, 0 , 2 * Math.PI,true)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(canv.width/2,canv.height/2,60, 0 , 2 * Math.PI,true)
+    ctx.stroke()
+  };
+  function sett() {
+      var button =  document.getElementsByClassName('cnts')[1]
+      if(button.innerHTML == "[ :active ]") { button.innerHTML="[ :passive ]"; strokeAppanded(true) }
+      else { button.innerHTML="[ :active ]"; strokeAppanded() }
+  };
+  function find() {
+     var full = document.getElementsByTagName('input')[0].value
+     var some = document.getElementById('activePs').children
+     for(var i = 0; i < some.length; i++) {
+      if(some[i].className != "alrt") {
+       if(is(full,some[i].innerHTML)) { some[i].style.display="block" }
+       else { some[i].style.display="none" }
+     } if(full == "") { document.getElementsByTagName('input')[0].blur() }
+  };
+ function is(a,b) {
+     var F=""
+     for(var i = 0; i < a.length; i++) { F=F+b[i] }
+     if(a == F) { return true }
+      }
+  };
+ canv.onclick=function() { copyLink() }
+  function copyLink() {
+   var R = __Domain__.GetMainURL(__Domain__.script.src) + 'Script.js'
+   var Link = '<script database="use" type="text/javascript" src="' + R + '"></scri' + 'pt>'
+    navigator.clipboard.writeText(Link)
+    .then(() => {})
+    .catch(err => { alert(R) })
+  };
+      </script>
+ <script type="text/javascript"> 
+    var moving=false
+    document.getElementById('activePs').onmousedown=function(e) {
+      moving=[e.y,document.getElementById('activePs').scrollTop]
+     }
+    document.onmouseup=function() {
+      moving=false
+     } 
+    document.onmousemove=function(e) {
+      if(moving != false) {
+       var p = document.getElementById('activePs')
+       p.scrollTop=moving[1] - (e.y-moving[0])
+      }
+  };
+  </script>
+  <script database="use" type="text/javascript" src="Script.js"></script>
+  <script id="background" type="text/javascript" src="ImageScript.js"></script>
+ </body>
+</html>
